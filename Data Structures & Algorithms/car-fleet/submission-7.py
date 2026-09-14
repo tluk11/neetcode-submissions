@@ -1,0 +1,10 @@
+class Solution:
+    def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
+        stack = []
+        cars = sorted(zip(position, speed), reverse=True)
+        for p,s in cars:
+            time_to_target = (target-p)/s
+            if not stack or time_to_target > stack[-1]:
+                stack.append(time_to_target)
+
+        return len(stack)
